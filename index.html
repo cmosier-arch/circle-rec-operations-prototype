@@ -4,286 +4,185 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Circle Rec Operations</title>
-
   <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      background: #f4f6f8;
-      color: #172033;
-    }
-
-    header {
-      background: #123c69;
-      color: white;
-      padding: 28px 40px;
-    }
-
-    header h1 {
-      margin: 0;
-      font-size: 28px;
-    }
-
-    header p {
-      margin: 6px 0 0;
-      opacity: .8;
-    }
-
-    main {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 32px 24px;
-    }
-
-    .welcome {
-      margin-bottom: 28px;
-    }
-
-    .welcome h2 {
-      margin-bottom: 5px;
-    }
-
-    .section-title {
-      margin: 32px 0 14px;
-      font-size: 18px;
-    }
-
-    .program-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-      gap: 18px;
-    }
-
-    .card {
-      background: white;
-      border-radius: 12px;
-      padding: 22px;
-      box-shadow: 0 2px 8px rgba(0,0,0,.07);
-      border: 1px solid #e4e8ed;
-    }
-
-    .card h3 {
-      margin-top: 0;
-      margin-bottom: 8px;
-    }
-
-    .status {
-      display: inline-block;
-      padding: 5px 10px;
-      border-radius: 20px;
-      font-size: 12px;
-      font-weight: bold;
-      background: #e8f1fb;
-      color: #123c69;
-    }
-
-    .progress {
-      height: 8px;
-      background: #e7ebef;
-      border-radius: 8px;
-      margin-top: 16px;
-      overflow: hidden;
-    }
-
-    .progress-bar {
-      height: 100%;
-      background: #123c69;
-    }
-
-    .button {
-      display: inline-block;
-      margin-top: 18px;
-      padding: 9px 14px;
-      background: #123c69;
-      color: white;
-      text-decoration: none;
-      border-radius: 6px;
-      cursor: pointer;
-    }
-
-    .upcoming {
-      background: white;
-      border-radius: 12px;
-      border: 1px solid #e4e8ed;
-      overflow: hidden;
-    }
-
-    .event {
-      display: flex;
-      gap: 20px;
-      padding: 16px 20px;
-      border-bottom: 1px solid #edf0f2;
-    }
-
-    .event:last-child {
-      border-bottom: none;
-    }
-
-    .date {
-      font-weight: bold;
-      min-width: 70px;
-      color: #123c69;
-    }
-
-    #basketball-detail {
-      display: none;
-      margin-top: 30px;
-    }
-
-    .checklist div {
-      padding: 8px 0;
-      border-bottom: 1px solid #eee;
-    }
-
-    footer {
-      text-align: center;
-      padding: 30px;
-      color: #777;
-      font-size: 13px;
-    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#f4f6f8;color:#172033}
+    header{background:#123c69;color:#fff;padding:28px 40px}
+    header h1{margin:0;font-size:28px}
+    header p{margin:6px 0 0;opacity:.8}
+    main{max-width:1120px;margin:0 auto;padding:32px 24px}
+    .welcome{margin-bottom:28px}
+    .section-title{margin:32px 0 14px;font-size:18px}
+    .program-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px}
+    .card{background:#fff;border-radius:12px;padding:22px;box-shadow:0 2px 8px rgba(0,0,0,.07);border:1px solid #e4e8ed}
+    .card h3,.card h2{margin-top:0}
+    .status{display:inline-block;padding:5px 10px;border-radius:20px;font-size:12px;font-weight:bold;background:#e8f1fb;color:#123c69}
+    .progress{height:8px;background:#e7ebef;border-radius:8px;margin-top:16px;overflow:hidden}
+    .progress-bar{height:100%;background:#123c69}
+    .button,.link-button{display:inline-block;margin-top:18px;padding:10px 14px;background:#123c69;color:#fff;text-decoration:none;border:none;border-radius:7px;cursor:pointer;font:inherit}
+    .button.secondary{background:#eef3f8;color:#123c69;border:1px solid #d5e0eb}
+    .upcoming{background:#fff;border-radius:12px;border:1px solid #e4e8ed;overflow:hidden}
+    .event{display:flex;gap:20px;padding:16px 20px;border-bottom:1px solid #edf0f2}
+    .event:last-child{border-bottom:none}
+    .date{font-weight:bold;min-width:70px;color:#123c69}
+    #basketball-page{display:none}
+    .page-header{display:flex;justify-content:space-between;gap:20px;align-items:flex-start;margin-bottom:22px}
+    .page-header h2{font-size:30px;margin:4px 0 6px}
+    .eyebrow{font-size:12px;font-weight:bold;letter-spacing:.08em;text-transform:uppercase;color:#60738a}
+    .muted{color:#657181}
+    .quick-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+    .quick-actions a{margin:0}
+    .dashboard-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:18px;margin-top:18px}
+    .stat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+    .stat{background:#f8fafc;border:1px solid #e7ebef;border-radius:10px;padding:14px}
+    .stat strong{display:block;font-size:18px;color:#123c69}
+    .checklist label{display:flex;gap:10px;align-items:flex-start;padding:10px 0;border-bottom:1px solid #eee}
+    .checklist label:last-child{border-bottom:none}
+    .resource-list{display:grid;gap:10px}
+    .resource-link{display:flex;justify-content:space-between;gap:15px;align-items:center;padding:13px 14px;border:1px solid #e5e9ee;border-radius:9px;text-decoration:none;color:#172033;background:#fff}
+    .resource-link:hover{background:#f7f9fb}
+    .resource-link span:last-child{color:#123c69;font-weight:bold}
+    .history-row{display:flex;justify-content:space-between;gap:20px;padding:12px 0;border-bottom:1px solid #eee}
+    .history-row:last-child{border-bottom:none}
+    .history-row a{color:#123c69;text-decoration:none;font-weight:bold}
+    footer{text-align:center;padding:30px;color:#777;font-size:13px}
+    @media(max-width:800px){.dashboard-grid,.stat-grid{grid-template-columns:1fr}.page-header{display:block}}
   </style>
 </head>
-
 <body>
-
 <header>
   <h1>Circle Recreation</h1>
   <p>Operations Hub</p>
 </header>
 
 <main>
+  <section id="home-page">
+    <div class="welcome">
+      <h2>Operations Dashboard</h2>
+      <p>A prototype workspace for managing Circle Rec programs and operations.</p>
+    </div>
 
-  <div class="welcome">
-    <h2>Operations Dashboard</h2>
-    <p>A prototype workspace for managing Circle Rec programs and operations.</p>
-  </div>
-
-  <h3 class="section-title">Active Programs</h3>
-
-  <div class="program-grid">
-
-    <div class="card">
-      <h3>🏀 Basketball</h3>
-      <span class="status">Registration</span>
-      <p>2026–27 Season</p>
-
-      <div class="progress">
-        <div class="progress-bar" style="width:65%"></div>
+    <h3 class="section-title">Active Programs</h3>
+    <div class="program-grid">
+      <div class="card">
+        <h3>🏀 Basketball</h3>
+        <span class="status">Registration / Preseason</span>
+        <p>2026–27 Season</p>
+        <div class="progress"><div class="progress-bar" style="width:65%"></div></div>
+        <small>Prototype readiness view</small><br>
+        <button class="button" onclick="openBasketball()">Open Program</button>
       </div>
 
-      <small>Preseason readiness: 65%</small>
+      <div class="card">
+        <h3>🏈 Football</h3>
+        <span class="status">In Season</span>
+        <p>Fall 2026</p>
+        <div class="progress"><div class="progress-bar" style="width:90%"></div></div>
+        <small>Season operations: 90%</small>
+      </div>
 
-      <br>
+      <div class="card">
+        <h3>🏐 Volleyball</h3>
+        <span class="status">In Season</span>
+        <p>Fall 2026</p>
+        <div class="progress"><div class="progress-bar" style="width:85%"></div></div>
+        <small>Season operations: 85%</small>
+      </div>
+    </div>
 
-      <button class="button" onclick="showBasketball()">
-        Open Program
-      </button>
+    <h3 class="section-title">Upcoming</h3>
+    <div class="upcoming">
+      <div class="event"><div class="date">Late Sep</div><div>Basketball registration opens</div></div>
+      <div class="event"><div class="date">Late Oct</div><div>Basketball registration closes</div></div>
+      <div class="event"><div class="date">3rd wk Nov</div><div>Basketball practices begin</div></div>
+      <div class="event"><div class="date">Mid Dec</div><div>Basketball season begins</div></div>
+    </div>
+  </section>
+
+  <section id="basketball-page">
+    <button class="button secondary" onclick="goHome()">← Operations Home</button>
+
+    <div class="page-header" style="margin-top:18px">
+      <div>
+        <div class="eyebrow">Youth Sports Program</div>
+        <h2>🏀 Basketball</h2>
+        <p class="muted">2026–27 · Registration & Preseason</p>
+        <div class="quick-actions">
+          <a class="link-button" href="https://drive.google.com/drive/folders/1tdoQMZyP90zrc8ZARQdUu2pzitPsOSCu?usp=drive_link" target="_blank" rel="noopener">Open Drive Folder</a>
+          <a class="link-button" href="https://docs.google.com/document/d/111l6Xv0-hQo2MKfx9Sg-5kA6OHm67LqIR2nUjMKz3Ig/edit?usp=sharing" target="_blank" rel="noopener">Open Operations Guide</a>
+        </div>
+      </div>
+      <span class="status">Current Phase: Preseason</span>
     </div>
 
     <div class="card">
-      <h3>🏈 Football</h3>
-      <span class="status">In Season</span>
-      <p>Fall 2026</p>
+      <h3>Current Season</h3>
+      <div class="stat-grid">
+        <div class="stat"><span class="muted">Registration Opens</span><strong>Last week of September</strong></div>
+        <div class="stat"><span class="muted">Registration Closes</span><strong>Last week of October</strong></div>
+        <div class="stat"><span class="muted">Practices Begin</span><strong>3rd week of November</strong></div>
+      </div>
+      <div class="stat-grid" style="margin-top:12px">
+        <div class="stat"><span class="muted">Season Begins</span><strong>Mid December</strong></div>
+        <div class="stat"><span class="muted">2026 Registrations</span><strong>304</strong></div>
+        <div class="stat"><span class="muted">2026 Net</span><strong>-$1,121.06</strong></div>
+      </div>
+    </div>
 
-      <div class="progress">
-        <div class="progress-bar" style="width:90%"></div>
+    <div class="dashboard-grid">
+      <div class="card">
+        <h3>Operations Checklist</h3>
+        <p class="muted">Prototype checklist. Your selections are remembered on this device.</p>
+        <div class="checklist" id="basketball-checklist">
+          <label><input type="checkbox" data-task="program-guide"> Program Guide created</label>
+          <label><input type="checkbox" data-task="registration"> Registration setup complete</label>
+          <label><input type="checkbox" data-task="marketing"> Marketing launched</label>
+          <label><input type="checkbox" data-task="coaches"> Coaches selected / cleared</label>
+          <label><input type="checkbox" data-task="teams"> Teams formed</label>
+          <label><input type="checkbox" data-task="practice"> Practice schedule finalized</label>
+          <label><input type="checkbox" data-task="coach-meeting"> Coach meeting completed</label>
+        </div>
       </div>
 
-      <small>Season operations: 90%</small>
-    </div>
-
-    <div class="card">
-      <h3>🏐 Volleyball</h3>
-      <span class="status">In Season</span>
-      <p>Fall 2026</p>
-
-      <div class="progress">
-        <div class="progress-bar" style="width:85%"></div>
+      <div class="card">
+        <h3>Program Resources</h3>
+        <div class="resource-list">
+          <a class="resource-link" href="https://drive.google.com/drive/folders/1tdoQMZyP90zrc8ZARQdUu2pzitPsOSCu?usp=drive_link" target="_blank" rel="noopener"><span>📁 Basketball Drive Folder</span><span>Open →</span></a>
+          <a class="resource-link" href="https://docs.google.com/document/d/111l6Xv0-hQo2MKfx9Sg-5kA6OHm67LqIR2nUjMKz3Ig/edit?usp=sharing" target="_blank" rel="noopener"><span>📋 Operations Guide</span><span>Open →</span></a>
+          <a class="resource-link" href="https://docs.google.com/document/d/1S9JgwXcKL97tEa64lJrfU1Dvu-lY72xzgaSCt9j1Qo8/edit?usp=sharing" target="_blank" rel="noopener"><span>📝 2026 EOS Report</span><span>Open →</span></a>
+          <a class="resource-link" href="https://docs.google.com/document/d/1oBf4dv5ikE9any90N-OmkMmcLrp8e2dEeYF0f2LX7s0/edit?usp=sharing" target="_blank" rel="noopener"><span>📝 2025 EOS Report</span><span>Open →</span></a>
+        </div>
       </div>
-
-      <small>Season operations: 85%</small>
     </div>
 
-  </div>
-
-
-  <div id="basketball-detail" class="card">
-
-    <h2>🏀 Basketball · 2026–27</h2>
-
-    <p><strong>Current Phase:</strong> Registration & Preseason</p>
-
-    <h3>Season Readiness</h3>
-
-    <div class="checklist">
-      <div>☑ Program Guide Created</div>
-      <div>☑ Registration Open</div>
-      <div>☑ Marketing Started</div>
-      <div>☐ Coaches Selected</div>
-      <div>☐ Teams Formed</div>
-      <div>☐ Practice Schedule Finalized</div>
-      <div>☐ Coach Meeting</div>
+    <div class="card" style="margin-top:18px">
+      <h3>Program History</h3>
+      <div class="history-row"><span><strong>2026</strong> · 304 registrations</span><a href="https://docs.google.com/document/d/1S9JgwXcKL97tEa64lJrfU1Dvu-lY72xzgaSCt9j1Qo8/edit?usp=sharing" target="_blank" rel="noopener">EOS Report →</a></div>
+      <div class="history-row"><span><strong>2025</strong> · 337 registrations</span><a href="https://docs.google.com/document/d/1oBf4dv5ikE9any90N-OmkMmcLrp8e2dEeYF0f2LX7s0/edit?usp=sharing" target="_blank" rel="noopener">EOS Report →</a></div>
     </div>
-
-    <h3>Key Dates</h3>
-
-    <p>
-      <strong>Registration Deadline:</strong> October 26<br>
-      <strong>Practices Begin:</strong> Week of November 16<br>
-      <strong>First Games:</strong> December 12
-    </p>
-
-    <h3>Resources</h3>
-
-    <p>
-      Operations Guide · Program Drive · Registration · EOS Reports
-    </p>
-
-  </div>
-
-
-  <h3 class="section-title">Upcoming</h3>
-
-  <div class="upcoming">
-
-    <div class="event">
-      <div class="date">Oct 26</div>
-      <div>Basketball registration closes</div>
-    </div>
-
-    <div class="event">
-      <div class="date">Nov 16</div>
-      <div>Basketball practices begin</div>
-    </div>
-
-    <div class="event">
-      <div class="date">Dec 12</div>
-      <div>Basketball games begin</div>
-    </div>
-
-  </div>
-
+  </section>
 </main>
 
-<footer>
-  Circle Recreation Commission · Operations Prototype
-</footer>
+<footer>Circle Recreation Commission · Operations Prototype</footer>
 
 <script>
-  function showBasketball() {
-    const detail = document.getElementById("basketball-detail");
-
-    detail.style.display = "block";
-
-    detail.scrollIntoView({
-      behavior: "smooth"
+  function openBasketball(){
+    document.getElementById('home-page').style.display='none';
+    document.getElementById('basketball-page').style.display='block';
+    window.scrollTo({top:0,behavior:'smooth'});
+    loadChecklist();
+  }
+  function goHome(){
+    document.getElementById('basketball-page').style.display='none';
+    document.getElementById('home-page').style.display='block';
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+  function loadChecklist(){
+    document.querySelectorAll('#basketball-checklist input[type="checkbox"]').forEach(cb=>{
+      cb.checked = localStorage.getItem('basketball-'+cb.dataset.task)==='true';
+      cb.onchange = ()=>localStorage.setItem('basketball-'+cb.dataset.task, cb.checked);
     });
   }
 </script>
-
 </body>
 </html>
