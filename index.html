@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Circle Rec Operations</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f4f6f8;
+      color: #172033;
+    }
+
+    header {
+      background: #123c69;
+      color: white;
+      padding: 28px 40px;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 28px;
+    }
+
+    header p {
+      margin: 6px 0 0;
+      opacity: .8;
+    }
+
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 32px 24px;
+    }
+
+    .welcome {
+      margin-bottom: 28px;
+    }
+
+    .welcome h2 {
+      margin-bottom: 5px;
+    }
+
+    .section-title {
+      margin: 32px 0 14px;
+      font-size: 18px;
+    }
+
+    .program-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 18px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 12px;
+      padding: 22px;
+      box-shadow: 0 2px 8px rgba(0,0,0,.07);
+      border: 1px solid #e4e8ed;
+    }
+
+    .card h3 {
+      margin-top: 0;
+      margin-bottom: 8px;
+    }
+
+    .status {
+      display: inline-block;
+      padding: 5px 10px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: bold;
+      background: #e8f1fb;
+      color: #123c69;
+    }
+
+    .progress {
+      height: 8px;
+      background: #e7ebef;
+      border-radius: 8px;
+      margin-top: 16px;
+      overflow: hidden;
+    }
+
+    .progress-bar {
+      height: 100%;
+      background: #123c69;
+    }
+
+    .button {
+      display: inline-block;
+      margin-top: 18px;
+      padding: 9px 14px;
+      background: #123c69;
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .upcoming {
+      background: white;
+      border-radius: 12px;
+      border: 1px solid #e4e8ed;
+      overflow: hidden;
+    }
+
+    .event {
+      display: flex;
+      gap: 20px;
+      padding: 16px 20px;
+      border-bottom: 1px solid #edf0f2;
+    }
+
+    .event:last-child {
+      border-bottom: none;
+    }
+
+    .date {
+      font-weight: bold;
+      min-width: 70px;
+      color: #123c69;
+    }
+
+    #basketball-detail {
+      display: none;
+      margin-top: 30px;
+    }
+
+    .checklist div {
+      padding: 8px 0;
+      border-bottom: 1px solid #eee;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px;
+      color: #777;
+      font-size: 13px;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>Circle Recreation</h1>
+  <p>Operations Hub</p>
+</header>
+
+<main>
+
+  <div class="welcome">
+    <h2>Operations Dashboard</h2>
+    <p>A prototype workspace for managing Circle Rec programs and operations.</p>
+  </div>
+
+  <h3 class="section-title">Active Programs</h3>
+
+  <div class="program-grid">
+
+    <div class="card">
+      <h3>🏀 Basketball</h3>
+      <span class="status">Registration</span>
+      <p>2026–27 Season</p>
+
+      <div class="progress">
+        <div class="progress-bar" style="width:65%"></div>
+      </div>
+
+      <small>Preseason readiness: 65%</small>
+
+      <br>
+
+      <button class="button" onclick="showBasketball()">
+        Open Program
+      </button>
+    </div>
+
+    <div class="card">
+      <h3>🏈 Football</h3>
+      <span class="status">In Season</span>
+      <p>Fall 2026</p>
+
+      <div class="progress">
+        <div class="progress-bar" style="width:90%"></div>
+      </div>
+
+      <small>Season operations: 90%</small>
+    </div>
+
+    <div class="card">
+      <h3>🏐 Volleyball</h3>
+      <span class="status">In Season</span>
+      <p>Fall 2026</p>
+
+      <div class="progress">
+        <div class="progress-bar" style="width:85%"></div>
+      </div>
+
+      <small>Season operations: 85%</small>
+    </div>
+
+  </div>
+
+
+  <div id="basketball-detail" class="card">
+
+    <h2>🏀 Basketball · 2026–27</h2>
+
+    <p><strong>Current Phase:</strong> Registration & Preseason</p>
+
+    <h3>Season Readiness</h3>
+
+    <div class="checklist">
+      <div>☑ Program Guide Created</div>
+      <div>☑ Registration Open</div>
+      <div>☑ Marketing Started</div>
+      <div>☐ Coaches Selected</div>
+      <div>☐ Teams Formed</div>
+      <div>☐ Practice Schedule Finalized</div>
+      <div>☐ Coach Meeting</div>
+    </div>
+
+    <h3>Key Dates</h3>
+
+    <p>
+      <strong>Registration Deadline:</strong> October 26<br>
+      <strong>Practices Begin:</strong> Week of November 16<br>
+      <strong>First Games:</strong> December 12
+    </p>
+
+    <h3>Resources</h3>
+
+    <p>
+      Operations Guide · Program Drive · Registration · EOS Reports
+    </p>
+
+  </div>
+
+
+  <h3 class="section-title">Upcoming</h3>
+
+  <div class="upcoming">
+
+    <div class="event">
+      <div class="date">Oct 26</div>
+      <div>Basketball registration closes</div>
+    </div>
+
+    <div class="event">
+      <div class="date">Nov 16</div>
+      <div>Basketball practices begin</div>
+    </div>
+
+    <div class="event">
+      <div class="date">Dec 12</div>
+      <div>Basketball games begin</div>
+    </div>
+
+  </div>
+
+</main>
+
+<footer>
+  Circle Recreation Commission · Operations Prototype
+</footer>
+
+<script>
+  function showBasketball() {
+    const detail = document.getElementById("basketball-detail");
+
+    detail.style.display = "block";
+
+    detail.scrollIntoView({
+      behavior: "smooth"
+    });
+  }
+</script>
+
+</body>
+</html>
